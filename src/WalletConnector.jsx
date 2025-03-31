@@ -32,10 +32,10 @@ const WalletConnector = () => {
       }
     };
     
-    // Add event listener
+  
     window.addEventListener("message", messageHandler);
     
-    // Clean up
+
     return () => {
       window.removeEventListener("message", messageHandler);
     };
@@ -53,11 +53,9 @@ const WalletConnector = () => {
     
     setWalletState(prev => ({ ...prev, loading: true, error: null }));
     
-    // Send connect request to content script
+
     window.postMessage({ type: "CONNECT_Z_WALLET" }, "*");
-    
-    // Add a timeout in case the extension doesn't respond
-    setTimeout(() => {
+        setTimeout(() => {
       setWalletState(prev => {
         if (prev.loading) {
           return {
